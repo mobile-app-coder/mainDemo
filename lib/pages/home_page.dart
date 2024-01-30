@@ -9,16 +9,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   Future goNext() async {
     var name = "Dart";
     var version = "3.2.0";
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (BuildContext context) {
-      return DetailsPage(name: name, version: version,);
+        .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
+      return DetailsPage(
+        name: name,
+        version: version,
+      );
     }));
   }
-
 
   @override
   Widget build(BuildContext context) {

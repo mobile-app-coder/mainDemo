@@ -11,13 +11,25 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+
+  back(){
+    Map map = {"name":"Flutter", "version":"3.16.9"};
+    Navigator.of(context).pop(map);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(
-          "name: ${widget.name}\nversion:${widget.version}",
-        ),
+        child: MaterialButton(
+          child: Text("ButtonBack"),
+          textColor: Colors.white,
+          color: Colors.blue,
+          onPressed: (){
+            back();
+          },
+        )
+
       ),
     );
   }

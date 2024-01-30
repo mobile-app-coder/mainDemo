@@ -9,18 +9,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String? getName;
+  String? getVersion;
+
   Future goNext() async {
     var name = "Dart";
     var version = "3.2.0";
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
+    Map map = await Navigator.of(context)
+        .push(MaterialPageRoute(builder: (BuildContext context) {
       return DetailsPage(
         name: name,
         version: version,
       );
     }));
-  }
 
+    if (map != null && map.containsKey("name")) {
+      getName = map["name"];
+      getVersion = map["version"];
+    }
+  }
+  var text = "Got To Next";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +36,13 @@ class _HomePageState extends State<HomePage> {
         child: MaterialButton(
           color: Colors.blue,
           textColor: Colors.white,
-          child: Text("Go to next page"),
+          child: Text(text),
           onPressed: () {
+            setState(() {
+              text = getName ?? "No result";
+            });
+            print(getName);
+            print(getVersion);
             goNext();
           },
         ),

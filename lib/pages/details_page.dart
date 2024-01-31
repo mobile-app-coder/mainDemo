@@ -22,7 +22,7 @@ class _DetailsPageState extends State<DetailsPage> {
     return Scaffold(
       body: Center(
         child: MaterialButton(
-          child: Text("ButtonBack"),
+          child: Text("${widget.name} ${widget.version}"),
           textColor: Colors.white,
           color: Colors.blue,
           onPressed: (){

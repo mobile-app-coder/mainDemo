@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navigation_flutter/pages/DetailsPage.dart';
+import 'package:navigation_flutter/pages/details_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,10 +9,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String? getName;
-  String? getVersion;
 
-  Future goNext() async {
+  Future openDetailsPage() async {
     var name = "Dart";
     var version = "3.2.0";
     Map map = await Navigator.of(context)
@@ -23,12 +21,16 @@ class _HomePageState extends State<HomePage> {
       );
     }));
 
-    if (map != null && map.containsKey("name")) {
-      getName = map["name"];
-      getVersion = map["version"];
+    if (map != null) {
+      String name = map["name"];
+      String version = map["version"];
+      print(name);
+      print(version);
     }
+
+
   }
-  var text = "Got To Next";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,14 +38,9 @@ class _HomePageState extends State<HomePage> {
         child: MaterialButton(
           color: Colors.blue,
           textColor: Colors.white,
-          child: Text(text),
+          child: Text("Open"),
           onPressed: () {
-            setState(() {
-              text = getName ?? "No result";
-            });
-            print(getName);
-            print(getVersion);
-            goNext();
+            openDetailsPage();
           },
         ),
       ),
